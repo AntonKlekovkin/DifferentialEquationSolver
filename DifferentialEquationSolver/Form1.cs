@@ -154,11 +154,11 @@ namespace DifferentialEquationSolver
 
             if(rbEuler.Checked)
             {
-                SolveEquatinEuler();
+                SolveEquationEuler();
             }
             else if(rbHeun.Checked)
             {
-                SolveEquatinHeun();
+                SolveEquationHeun();
             }
             else if(rbRK4.Checked)
             {
@@ -172,7 +172,7 @@ namespace DifferentialEquationSolver
             
         }
 
-        void SolveEquatinEuler()
+        void SolveEquationEuler()
         {
             Vector4d zeroBias = Vector4d.zero;
 
@@ -201,7 +201,7 @@ namespace DifferentialEquationSolver
 
             return newValue;
         }
-        void SolveEquatinHeun()
+        void SolveEquationHeun()
         {
             Vector4d zeroBias = Vector4d.zero;
 
@@ -544,8 +544,19 @@ namespace DifferentialEquationSolver
         private void btnConfIntY_Click(object sender, EventArgs e)
         {
             double squareSigma, sum, bigDelta;
-            //const double z = 5.89;  // 99.8%
-            const double z = 2.571;  // 95%
+            const double z99 = 5.598;  // 99.5%
+            const double z95 = 2.776;  // 95%
+
+            double z;
+
+            if (rb95.Checked)
+            {
+                z = z95;
+            }
+            else
+            {
+                z = z99;
+            }
 
             for (int i = 0; i < yMean.Length; i++) // numberPoints - all points
             {
